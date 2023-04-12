@@ -14,9 +14,10 @@ function Home() {
     const [messages, setMessages] = useState([] as { id: string, user: string, content: string, createdAt: number}[])
     const [message, setMessage] = useState('');
     const [votes, setVotes] = useState([] as { user: string, value: number, createdAt: number }[])
-    const endRef = React.useRef(null);
+    const endRef = React.useRef(null) as any;
 
     const scrollToBottom = () => {
+        // @ts-nocheck
         endRef.current?.scrollIntoView({ behavior: "smooth" })
       }
 
@@ -123,7 +124,7 @@ function Home() {
             {/* Logo */}
             <div className="w-full h-4 flex items-center justify-between animate-pulse">
                 <h1 className='font-black text-[10px]'>Logged in as @{user}</h1>
-                <Image src="terminal.svg" width={32} height={200} alt="Terminal logo" />
+                <Image src="terminal.svg" width={32} height={200} alt="Terminal logo" onClick={() => router.push('/auth')}/>
                 
             </div>
             {/* Vote */}
